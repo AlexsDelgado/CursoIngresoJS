@@ -1,7 +1,17 @@
+/*
+Delgado Alexs 1-H
+Ejercicio 4
+
+*/
+
 function mostrar()
-{
-	//tomo la edad  
-	alert("ok");
+{	 
+	var edad;
+	edad = txtIdEdad.value;
+	edad = parseInt(edad);
 
+	if (edad<18 && edad>12) {
 
-}//FIN DE LA FUNCIÓN
+		alert("Usted es adolescente");
+	}
+}
