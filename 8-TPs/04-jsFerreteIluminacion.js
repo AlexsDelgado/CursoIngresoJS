@@ -1,9 +1,4 @@
-/*
-Delgado Alexs 1-H
-
-TP 4:
-
-Para el departamento de iluminación:
+/*4.	Para el departamento de iluminación:
 Tomando en cuenta que todas las lámparas están en oferta al mismo precio de $35 pesos final.
 A.	Si compra 6 o más  lamparitas bajo consumo tiene un descuento del 50%. 
 B.	Si compra 5  lamparitas bajo consumo marca "ArgentinaLuz" se hace un descuento del 40 % y si es de otra marca el descuento es del 30%.
@@ -15,65 +10,56 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
-	var cantLamparas;
-	var marca;
-	var precio;
-	var precioFinal;
+	var cantidadLamparas;
+	var marcaLamparas;
+	var precio = 35;
 	var descuento;
 	var ingresosBrutos;
+	var precioFinal;
 
-	cantLamparas = txtIdCantidad.value;
-	cantLamparas = parseInt(cantLamparas);
-	marca = Marca.value;
-	precio = 35*cantLamparas;
-	
-	if(cantLamparas > 5 ){
-		//precioFinal = precio - precio*50/100;
-		descuento = precio*50/100;
-	}else {
-		if(cantLamparas == 5){
-			if (marca == "ArgentinaLuz") {
-				//precioFinal = precio - precio*40/100;
+	cantidadLamparas = txtIdCantidad.value;
+	cantidadLamparas = parseInt(cantidadLamparas);
+	marcaLamparas = Marca.value;
+	precio = precio*cantidadLamparas;
+	switch(cantidadLamparas){
+		case 5:
+			if(marcaLamparas == "ArgentinaLuz"){
 				descuento = precio*40/100;
-			}else {
-					//precioFinal = precio - precio*30/100;
-					descuento = precio*30/100;
+			}else descuento = precio*30/100;
+		break;
+
+		case 4:
+			if(marcaLamparas == "ArgentinaLuz" || marcaLamparas == "FelipeLamparas"){
+				descuento = precio*25/100;
+			}else descuento = precio*20/100;
+		break;
+
+		case 3:
+			switch(marcaLamparas){
+				case "ArgentinaLuz":
+					descuento = precio*15/100;
+				break;
+				case "FelipeLamparas":
+					descuento = precio*10/100;
+				break;
+				default:
+					descuento = precio*5/100;
+				break;
 			}
-		}else {
-				if (cantLamparas == 4) {
-					if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
-						descuento = precio*25/100;
-					}else {
-						descuento = precio*20/100;
-						}
-				}else {
-					if(cantLamparas == 3 ){
-						if(marca == "ArgentinaLuz"){
-							descuento = precio*15/100;	
-						}else {
-								if(marca == "FelipeLamparas"){
-									descuento = precio*10/100;
-								}else {
-										descuento = precio*5/100;
-								}
-						}
-					}
-				}
-		}
+		break;
+
+		default:
+			if (cantidadLamparas>5) {
+				descuento = precio*50/100;
+			}else descuento = 0;
+		break;
 	}
-	if(cantLamparas<3){
-		txtIdprecioDescuento.value=precio;
-	
-	}else {
-		precioFinal = precio - descuento;
-		ingresosBrutos = precioFinal*10/100;
-		
-		if(precioFinal>120){
-			precioFinal= precioFinal+ingresosBrutos;
-			txtIdprecioDescuento.value = precioFinal + " IIBB Que usted pago: "+ ingresosBrutos;		
-		}else{
-			txtIdprecioDescuento.value = precioFinal;
-		}
-		
-	}	
+precioFinal = precio - descuento;
+if (precioFinal>119) {
+	ingresosBrutos= precioFinal*10/100;
+	precioFinal = precioFinal+ingresosBrutos;
+	txtIdprecioDescuento.value = "Usted pago "+precioFinal+" siendo " + ingresosBrutos + " de IIBB."; 
+}else	txtIdprecioDescuento.value = precioFinal; 
+
+ 	
 }
