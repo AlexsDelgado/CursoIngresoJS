@@ -1,21 +1,40 @@
 /*
+Delgado Alexs 1-H
+
 Al presionar el botón pedir  números  hasta que el usuario quiera,
 mostrar el número máximo y el número mínimo ingresado.*/
 function mostrar()
 {	// declarar variables
-	var banderaDelPrimero;
+	var banderaDelPrimerNegativo;
+	var banderaDelPrimerPar;
 	var numeroIngresado;
-	var numeroMaximo;
-	var numeroMinimo;
+	var numeroNegativoMayor;
+	var numeroMinimoPar;
 	var respuesta;
+	
 	//iniciar variables
-	banderaDelPrimero="es el primero";
+	banderaDelPrimerPar=true;
+	banderaDelPrimerNegativo=true;
 	respuesta='si';
-	while(respuesta=="si")
-	{
+	while(respuesta=="si"){
+		numeroIngresado=prompt("Ingrese un numero ");
+		numeroIngresado=parseInt(numeroIngresado);
 		
+		if(banderaDelPrimerNegativo || numeroIngresado>numeroNegativoMayor){
+			if(numeroIngresado<0){
+				numeroNegativoMayor=numeroIngresado;
+				banderaDelPrimerNegativo=false;
+			}
+		}
+		if(banderaDelPrimerPar || numeroIngresado<numeroMinimoPar){
+			if(numeroIngresado%2==0){
+				numeroMinimoPar = numeroIngresado;
+				banderaDelPrimerPar=false;
+			}
+	 	}
 		respuesta=prompt("desea continuar?");
 	}
-	txtIdMaximo.value=numeroMaximo;
-	txtIdMinimmo.value=numeroMinimo;
-}//FIN DE LA FUNCIÓN
+	txtIdMaximo.value=numeroNegativoMayor;
+	txtIdMinimo.value=numeroMinimoPar;
+}
+//FIN DE LA FUNCIÓN

@@ -16,11 +16,23 @@ function mostrar()
 	var respuesta;
 	var numeroIngresado;
 	var sumaNegativos=0;
+	var sumaPositivos=0;
+	var cantidadPositivos;
+	var cantidadNegativos;
 
 	respuesta="si";
 
 	while(respuesta=="si")
 	{
+		numeroIngresado= prompt("Ingrese un numero");
+		numeroIngresado= parseInt(numeroIngresado;
+		if(numeroIngresado<0){
+			sumaNegativos= sumaNegativos+numeroIngresado;
+		}else{
+			sumaPositivos= sumaPositivos + numeroIngresado
+			cantidadPositivos++;
+		}
+		
 		
 		respuesta=prompt("desea continuar?");
 	}//fin del while
